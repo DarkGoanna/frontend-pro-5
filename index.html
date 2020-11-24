@@ -21,13 +21,19 @@
         function checkSign (value) {
             return String(value).length == 1 ? true : false;
         }
+        function checkString (value) {
+            if (value === '') {
+                return false;
+            } return true;
+        }
 
         
         function padString (string, length, sign, side = 'right') {
             let result = '';
             let error = 'Ошибка в каком-то аргументе функции'
+            string = String(string); 
 
-            if ( checkNumber(length) && checkSign(sign) ) { // если с числом и символом всё ок
+            if ( checkString(string) && checkNumber(length) && checkSign(sign) ) { // если с строкой, числом и символом всё ок
                 if (string.length < length) { // проверяем нужно ли добавлять символ
                     let count = length - string.length; 
                 
