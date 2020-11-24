@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5</title>
+</head>
+<body>
+    <script>
+        /* Функция должна отсеивать строки, 
+        если строку можно преобразовать к числу - ок,
+        true/false в виде числа - не подходят,*/
+        function checkNumber (value) {
+            if ( !isNaN(value) && value > 0 && typeof value != 'boolean' ) {
+                return +value;
+            } return false;
+        }
+
+
+        /* Функция проверяет чтобы был только 1 символ */
+        function checkSign (value) {
+            return String(value).length == 1 ? true : false;
+        }
+
+        
+        function padString (string, length, sign, side = 'right') {
+            let result = '';
+            let error = 'Ошибка в каком-то аргументе функции'
+
+            if ( checkNumber(length) && checkSign(sign) ) { // если с числом и символом всё ок
+                if (string.length < length) { // проверяем нужно ли добавлять символ
+                    let count = length - string.length; 
+                
+                    if (side == false || side === 'left') { //добавляем симфол слева
+                        while (count) {
+                            result += sign;
+                            count--;
+                        }
+                        result += string;
+                    } else if (side == true || side === 'right') { // добавляем символ справа
+                        result += string;
+                        while (count) {
+                            result += sign;
+                            count--;
+                        }
+                    } else { // ошибка в флаге
+                        return error;
+                    }
+                } else { // если не нужно добавлять символ
+                    result = string;
+                }
+                return result;
+            } else { // ошибка в числе или символе
+                return error;
+            }
+        }
+    </script>
+</body>
+</html>
